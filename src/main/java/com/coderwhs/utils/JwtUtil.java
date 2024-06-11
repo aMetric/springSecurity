@@ -60,7 +60,7 @@ public class JwtUtil {
         return Jwts.builder()
                 .setId(uuid)              //唯一的ID
                 .setSubject(subject)   // 主题  可以是JSON数据
-                .setIssuer("sg")     // 签发者
+                .setIssuer("whs")     // 签发者
                 .setIssuedAt(now)      // 签发时间
                 .signWith(signatureAlgorithm, secretKey) //使用HS256对称加密算法签名, 第二个参数为秘钥
                 .setExpiration(expDate);
@@ -79,11 +79,11 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        // String jwt = createJWT("2123");
-        // System.out.println("jwt = " + jwt);
-        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJmOWE1ZGZlYzUyNzM0ZGYzOGQyZDE4NTc5YTY5YzBjZiIsInN1YiI6IjIxMjMiLCJpc3MiOiJzZyIsImlhdCI6MTcxNjUwOTMxMiwiZXhwIjoxNzE2NTEyOTEyfQ.xLxbWXmY2IAIS5GIe1YJuywXdeC21xNRGwos81eXTcs";
-        Claims claims = parseJWT(token);
-        System.out.println(claims);
+        String jwt = createJWT("2123");
+        System.out.println("jwt = " + jwt);
+        // String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJmOWE1ZGZlYzUyNzM0ZGYzOGQyZDE4NTc5YTY5YzBjZiIsInN1YiI6IjIxMjMiLCJpc3MiOiJzZyIsImlhdCI6MTcxNjUwOTMxMiwiZXhwIjoxNzE2NTEyOTEyfQ.xLxbWXmY2IAIS5GIe1YJuywXdeC21xNRGwos81eXTcs";
+        // Claims claims = parseJWT(token);
+        // System.out.println(claims);
     }
 
     /**

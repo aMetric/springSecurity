@@ -14,7 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 /**
- * @Author wuhs
+ * @Author whs
  * @Date 2024/6/2 10:14
  * @Description 自定义认证异常失败处理
  */

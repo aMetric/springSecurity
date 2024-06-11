@@ -4,7 +4,7 @@ import com.coderwhs.entity.User;
 import com.coderwhs.utils.ResponseResult;
 
 /**
- * @Author wuhs
+ * @Author whs
  * @Date 2024/5/24 8:15
  * @Description
  */

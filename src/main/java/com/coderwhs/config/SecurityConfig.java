@@ -19,7 +19,7 @@ import org.springframework.security.web.authentication.AuthenticationSuccessHand
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 /**
- * @Author wuhs
+ * @Author whs
  * @Date 2024/5/24 7:56
  * @Description SpringSecurity配置
  */
@@ -28,6 +28,7 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
+  //认证过滤器
   @Autowired
   private JwtAuthenticationTokenFilter jwtAuthenticationTokenFilter;
 

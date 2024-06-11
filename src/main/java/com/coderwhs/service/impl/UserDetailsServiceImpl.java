@@ -18,7 +18,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- * @Author wuhs
+ * @Author whs
  * @Date 2024/5/24 7:18
  * @Description 重写loadUserByUsername方法
  */
