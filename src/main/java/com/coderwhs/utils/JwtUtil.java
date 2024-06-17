@@ -13,13 +13,14 @@ import java.util.UUID;
 
 /**
  * JWT工具类
+ * @author whs
  */
 public class JwtUtil {
 
     //有效期为
     public static final Long JWT_TTL = 60 * 60 *1000L;// 60 * 60 *1000  一个小时
     //设置秘钥明文
-    public static final String JWT_KEY = "sangeng";
+    public static final String JWT_KEY = "whs";
 
     public static String getUUID(){
         String token = UUID.randomUUID().toString().replaceAll("-", "");
@@ -47,6 +48,13 @@ public class JwtUtil {
         return builder.compact();
     }
 
+    /**
+     * 生成jwt
+     * @param subject 需要加密的信息
+     * @param ttlMillis 过期时间
+     * @param uuid 唯一id
+     * @return
+     */
     private static JwtBuilder getJwtBuilder(String subject, Long ttlMillis, String uuid) {
         SignatureAlgorithm signatureAlgorithm = SignatureAlgorithm.HS256;
         SecretKey secretKey = generalKey();
@@ -58,11 +66,12 @@ public class JwtUtil {
         long expMillis = nowMillis + ttlMillis;
         Date expDate = new Date(expMillis);
         return Jwts.builder()
-                .setId(uuid)              //唯一的ID
-                .setSubject(subject)   // 主题  可以是JSON数据
-                .setIssuer("whs")     // 签发者
-                .setIssuedAt(now)      // 签发时间
-                .signWith(signatureAlgorithm, secretKey) //使用HS256对称加密算法签名, 第二个参数为秘钥
+                .setId(uuid)
+                .setSubject(subject)
+                .setIssuer("whs")
+                .setIssuedAt(now)
+                //使用HS256对称加密算法签名, 第二个参数为秘钥
+                .signWith(signatureAlgorithm, secretKey)
                 .setExpiration(expDate);
     }
 
@@ -79,11 +88,13 @@ public class JwtUtil {
     }
 
     public static void main(String[] args) throws Exception {
-        String jwt = createJWT("2123");
-        System.out.println("jwt = " + jwt);
-        // String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiJmOWE1ZGZlYzUyNzM0ZGYzOGQyZDE4NTc5YTY5YzBjZiIsInN1YiI6IjIxMjMiLCJpc3MiOiJzZyIsImlhdCI6MTcxNjUwOTMxMiwiZXhwIjoxNzE2NTEyOTEyfQ.xLxbWXmY2IAIS5GIe1YJuywXdeC21xNRGwos81eXTcs";
-        // Claims claims = parseJWT(token);
-        // System.out.println(claims);
+        // String jwt = createJWT("2123");
+        // System.out.println("jwt = " + jwt);
+
+        //
+        String token = "eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyYzEyM2YxYzVhNDY0NmY1YjY3ZWFkNDlhOGU1ZGMxYiIsInN1YiI6IjIxMjMiLCJpc3MiOiJ3aHMiLCJpYXQiOjE3MTgxNTE2MzksImV4cCI6MTcxODE1NTIzOX0.OgIAVK0qC-_tHen-ojH4Te5il2OkyHaoZtxgffFjq04";
+        Claims claims = parseJWT(token);
+        System.out.println(claims);
     }
 
     /**
@@ -97,8 +108,7 @@ public class JwtUtil {
     }
 
     /**
-     * 解析
-     *
+     * 解析jwt
      * @param jwt
      * @return
      * @throws Exception

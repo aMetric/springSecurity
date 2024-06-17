@@ -12,7 +12,7 @@ import java.util.List;
  * 自定义权限校验方法
  */
 @Component("ex")
-public class SGExpressionRoot {
+public class ExpressionRoot {
 
     public boolean hasAuthority(String authority){
         //获取当前用户的权限

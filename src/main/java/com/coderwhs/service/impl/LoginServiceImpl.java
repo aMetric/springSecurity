@@ -13,6 +13,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -31,6 +32,12 @@ public class LoginServiceImpl implements LoginService {
   @Autowired
   private RedisCache redisCache;
 
+  /**
+   * 在接口中我们通过AuthenticationManager的authenticate方法来进行用户认证,
+   * 所以需要在SecurityConfig中配置把AuthenticationManager注入容器。
+   * @param user
+   * @return
+   */
   @Override
   public ResponseResult login(User user) {
     //通过AuthenticationManager的authenticate方法来进行用户认证
@@ -39,12 +46,14 @@ public class LoginServiceImpl implements LoginService {
 
     //如果没通过，给出对应的提示
     if(Objects.isNull(authenticate)){
-      throw new RuntimeException("认证失败");
+      throw new RuntimeException("用户名或密码错误");
     }
 
     //如果通过了，使用userId生成一个jwt，存入ResponseResult返回
     LoginUser loginUser = (LoginUser)authenticate.getPrincipal();
     String id = loginUser.getUser().getId().toString();
+
+    //根据用户id生成token
     String jwt = JwtUtil.createJWT(id);
 
     //把完整的用户信息存入redis，使用userId作为key
@@ -56,7 +65,6 @@ public class LoginServiceImpl implements LoginService {
     Map<String,String> map = new HashMap<>();
     map.put("token",jwt);
     responseResult.setData(map);
-
 
     return responseResult;
   }

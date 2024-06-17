@@ -19,6 +19,7 @@ import java.util.stream.Collectors;
 @NoArgsConstructor
 public class LoginUser implements UserDetails {
 
+    //存储用户信息
     private User user;
 
     //存储权限信息

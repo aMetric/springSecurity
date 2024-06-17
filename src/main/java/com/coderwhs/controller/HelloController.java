@@ -16,9 +16,15 @@ public class HelloController {
    * 测试
    * @return
    */
-  @RequestMapping("/hello")
+  // @RequestMapping("/hello")
+  // // @PreAuthorize("hasAuthority('sysytem:dept:list')")
   // @PreAuthorize("hasAuthority('sysytem:dept:list')")
-  @PreAuthorize("ex.hasAuthority('sysytem:dept:list')")
+  // public String hello(){
+  //   return "hello";
+  // }
+
+  @RequestMapping("/hello")
+  @PreAuthorize("hasAuthority('sysytem:dept:list')")
   public String hello(){
     return "hello";
   }
@@ -29,7 +35,7 @@ public class HelloController {
    */
   @RequestMapping("/test/Cors")
   // @PreAuthorize("hasAuthority('sysytem:dept:list')")
-  @PreAuthorize("ex.hasAuthority('sysytem:dept:list')")
+  @PreAuthorize("hasAuthority('sysytem:dept:list')")
   public String cors(){
     return "/test/Cors";
   }

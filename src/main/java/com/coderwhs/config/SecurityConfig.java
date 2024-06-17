@@ -59,7 +59,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
             .and()
             .authorizeRequests()
             //permitAll无论有没有登入，都可以访问
-            .antMatchers("/hello").permitAll()
+            // .antMatchers("/hello").permitAll()
             //anonymous允许匿名用户访问，不允许已经登入的用户访问
             .antMatchers("/user/login").anonymous();
             //基于配置的权限控制
